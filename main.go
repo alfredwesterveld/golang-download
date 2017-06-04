@@ -25,10 +25,9 @@ func parseUrl(s string) string{
 func download(_url string, filename string) {
 	img, _ := os.Create(filename)
     resp, _ := http.Get(_url)
-    b, _ := io.Copy(img, resp.Body)
+    io.Copy(img, resp.Body)
 	defer img.Close()
 	defer resp.Body.Close()
-	fmt.Println("File size: ", b)
 }
 
 func ns() {
