@@ -2,21 +2,13 @@ package main
 
 import (
     "bufio"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
 	"strings"
-	"time"
 )
-
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
 
 func parseUrl(s string) string {
 	u, _ := url.Parse(s)
@@ -40,17 +32,6 @@ func readStdin() {
         line := scanner.Text()
         download(line, parseUrl(line))
     }
-}
-
-func downloadFile() {
-	content, _ := ioutil.ReadFile("./urls.txt")
-	lines := strings.Split(string(content), "\n")
-
-    for _, v := range lines {
-		if v != "" {
-			download(v, parseUrl(v))
-		}
-	}
 }
 
 func main() {
